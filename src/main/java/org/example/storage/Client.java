@@ -2,9 +2,8 @@ package org.example.storage;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -12,6 +11,7 @@ import javax.persistence.Id;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class Client {
     @Id
     @GeneratedValue
@@ -22,4 +22,7 @@ public class Client {
     private String customerCategory; // говорит о том кто клиент (физическое лицо, юридическое лицо, гос учереждение и тд)
     private String phoneNumber; // номер телефона клиента
     private String emailAddress; // адрес электронной почты клиента
+
+    @OneToMany
+    private List<Order> orders;
 }
