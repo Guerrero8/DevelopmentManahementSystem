@@ -24,7 +24,7 @@ public class Order {
     private Integer orderId; // id заказа
     private String clientSurname; // Фамилия клиента сделавшего этот заказ
     private String orderStatus; // статус выполнения заказа
-    private String address; // адрес проведения работ
+    private String address; // адрес проведения работ (структура -> город, улица, дом, подъезд если есть, квартира если есть)
     private LocalDate dateOfContractConclusion; // дата заключения договора
     private LocalDateTime dateTimeOfInstallation; // назначенная дата выполнения заказа
     private LocalDate DeadlineForServiceProvision; // крайний срок выполнения заказа
