@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,7 +21,7 @@ public class Order {
         //todo сделать сортировку по дедлайну и статусу заказа(фраза "заказ нуждается в срочном выполнении либо в продлении срока действия договора")
     }
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderId; // id заказа
     private String clientSurname; // Фамилия клиента сделавшего этот заказ
     private String orderStatus; // статус выполнения заказа
