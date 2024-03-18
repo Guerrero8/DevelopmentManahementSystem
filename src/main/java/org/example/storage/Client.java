@@ -19,8 +19,7 @@ public class Client {
     private String clientFirstName; // имя
     private String clientSurname; // фамилия
     private String clientPatronymicName; // отчество
-    private String customerCategory; // говорит о том кто клиент ( физическое лицо, юридическое лицо, гос учереждение и тд)
+    private String customerCategory; // говорит о том кто клиент (физическое лицо, юридическое лицо, гос учереждение и тд)
     private String phoneNumber; // номер телефона клиента
     private String emailAddress; // адрес электронной почты клиента
-
 }

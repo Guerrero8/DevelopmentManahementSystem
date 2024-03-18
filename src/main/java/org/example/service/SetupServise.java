@@ -1,46 +1,23 @@
 package org.example.service;
 
+import lombok.RequiredArgsConstructor;
+import org.example.controller.dto.SetupClientDTO;
+import org.example.controller.dto.SetupOrderDTO;
+import org.example.mapper.ClientMapper;
+import org.example.mapper.OrderMapper;
 import org.example.storage.Client;
 import org.example.storage.Order;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-
 @Service
+@RequiredArgsConstructor
 public class SetupServise {
-    public Order setupOrder(String clientSurname,
-                            String orderStatus,
-                            String address,
-                            LocalDate dateOfContractConclusion,
-                            LocalDateTime dateTimeOfInstallation,
-                            LocalDate deadlineForServiceProvision,
-                            float orderAmount) {
-        Order order = new Order(1,
-                clientSurname,
-                orderStatus,
-                address,
-                dateOfContractConclusion,
-                dateTimeOfInstallation,
-                deadlineForServiceProvision,
-                orderAmount);
-        return order;
+    private final ClientMapper clientMapper;
+    private final OrderMapper orderMapper;
+    public Order setupOrder(SetupOrderDTO setupOrderDTO) {
+        return orderMapper.toOrderFromOrderDTO(setupOrderDTO);
     }
-
-    public Client setupClient(String clientFirstName,
-                             String clientSurname,
-                             String clientPatronymicName,
-                             String customerCategory,
-                             String phoneNumber,
-                             String emailAddress){
-        Client client = new Client(1,
-                clientFirstName,
-                clientSurname,
-                clientPatronymicName,
-                customerCategory,
-                phoneNumber,
-                emailAddress);
-        return client;
-
+    public Client setupClient(SetupClientDTO setupClientDTO){
+        return clientMapper.toClientFromSetupClientDTO(setupClientDTO);
     }
 }
