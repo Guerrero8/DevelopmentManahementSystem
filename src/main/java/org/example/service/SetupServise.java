@@ -24,6 +24,8 @@ public class SetupServise {
         return order;
     }
     public Client setupClient(SetupClientDTO setupClientDTO){
-        return clientMapper.toClientFromSetupClientDTO(setupClientDTO);
+        Client client = clientMapper.toClientFromSetupClientDTO(setupClientDTO);
+        clientRepository.save(client);
+        return client;
     }
 }
