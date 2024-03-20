@@ -14,7 +14,7 @@ public class SetupOrderDTO {
     private LocalDate dateOfContractConclusion;
     private LocalDateTime dateTimeOfInstallation;
     private LocalDate DeadlineForServiceProvision;
-    private float rderAmount;
+    private float OrderAmount;
 
     private Integer clientId;
 

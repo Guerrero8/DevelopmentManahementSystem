@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.controller.dto.SetupOrderDTO;
 import org.example.entity.Order;
 import org.example.service.SearchServise;
+import org.example.service.SetupServise;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("api")
 public class OrderController {
-    private final OrderController setupServise;
+    private final SetupServise setupServise;
     private final SearchServise searchServise;
 
     @PostMapping("/setupOrder")
@@ -23,5 +24,9 @@ public class OrderController {
     @PostMapping("/getOrderByAdderss")
     public List<Order> getOrderByAddress(@RequestBody String desiredOrder){
         return searchServise.getOrdersFromRepositoryByAddress(desiredOrder);
+    }
+    @PostMapping("/findOrderAddressOfMap")
+    public String findOrderAddressOfMap(@RequestParam Integer orderId){
+        return searchServise.findOrderAddressOfMap(orderId);
     }
 }

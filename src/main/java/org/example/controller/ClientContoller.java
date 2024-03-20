@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.example.controller.dto.SetupClientDTO;
 import org.example.entity.Client;
 import org.example.service.SearchServise;
+import org.example.service.SetupServise;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
 @RequestMapping("api")
 public class ClientContoller {
     private final SearchServise searchServise;
-    private final ClientContoller setupServise;
+    private final SetupServise setupServise;
 
     @PostMapping("/setupClient")
     private void setupClient(@RequestBody SetupClientDTO setupClientDTO) {
