@@ -1,7 +1,7 @@
 package org.example.mapper;
 
 import org.example.controller.dto.SetupClientDTO;
-import org.example.storage.Client;
+import org.example.entity.Client;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingConstants;
 

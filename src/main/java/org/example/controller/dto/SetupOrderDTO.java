@@ -1,16 +1,22 @@
 package org.example.controller.dto;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
+@RequiredArgsConstructor
 public class SetupOrderDTO {
     private String orderStatus;
     private String address;
     private LocalDate dateOfContractConclusion;
-    private LocalDateTime dateTimeOfInstallation; //todo почему то в бд это поле null что бы я не делал
+    private LocalDateTime dateTimeOfInstallation;
     private LocalDate DeadlineForServiceProvision;
-    private float orderAmount;
+    private float rderAmount;
+
+    private Integer clientId;
+
+
 }

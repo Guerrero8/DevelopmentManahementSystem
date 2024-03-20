@@ -7,9 +7,11 @@ import org.example.mapper.ClientMapper;
 import org.example.mapper.OrderMapper;
 import org.example.repository.ClientRepository;
 import org.example.repository.OrderRepository;
-import org.example.storage.Client;
-import org.example.storage.Order;
+import org.example.entity.Client;
+import org.example.entity.Order;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -18,14 +20,18 @@ public class SetupServise {
     private final OrderMapper orderMapper;
     private final OrderRepository orderRepository;
     private final ClientRepository clientRepository;
-    public Order setupOrder(SetupOrderDTO setupOrderDTO) {
-        Order order = orderMapper.toOrderFromSetupOrderDTO(setupOrderDTO);
-        orderRepository.save(order);
-        return order;
-    }
-    public Client setupClient(SetupClientDTO setupClientDTO){
+
+    public Client setupClient(SetupClientDTO setupClientDTO) {
         Client client = clientMapper.toClientFromSetupClientDTO(setupClientDTO);
         clientRepository.save(client);
         return client;
+    }
+
+    public Order setupOrder(SetupOrderDTO setupOrderDTO) {
+        Optional<Client> client = clientRepository.findById(setupOrderDTO.getClientId());
+        Order order = orderMapper.toOrderFromSetupOrderDTO(setupOrderDTO);
+        order.setClient(client.get());
+        orderRepository.save(order);
+        return order;
     }
 }
