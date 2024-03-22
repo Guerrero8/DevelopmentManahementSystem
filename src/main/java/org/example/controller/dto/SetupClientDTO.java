@@ -1,6 +1,7 @@
 package org.example.controller.dto;
 
 import lombok.Data;
+import javax.validation.constraints.NotNull;
 
 @Data
 public class SetupClientDTO {
@@ -10,5 +11,6 @@ public class SetupClientDTO {
     private String customerCategory;
     private String phoneNumber;
     private String emailAddress;
+    @NotNull
     private String clientInn;
 }

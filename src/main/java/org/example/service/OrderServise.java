@@ -39,7 +39,7 @@ public class OrderServise {
             Order order = orderOptional.get();
             return "https://yandex.ru/maps/?text=" + URLEncoder.encode(order.getAddress(), StandardCharsets.UTF_8);
         } else {
-            return null;
+            throw new RuntimeException("Адрес не найден");
         }
     }
 }
