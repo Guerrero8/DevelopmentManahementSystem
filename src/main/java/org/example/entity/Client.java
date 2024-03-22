@@ -24,13 +24,13 @@ public class Client {
     @Column(name = "client_Surname")
     private String clientSurname;
     @Column(name = "client_Patronymic_Name")
-    private String clientPatronymicName; // отчество
+    private String clientPatronymicName;
     @Column(name = "customer_Category")
-    private String customerCategory; // говорит о том кто клиент (физическое лицо, юридическое лицо, гос учереждение и тд)
+    private String customerCategory;
     @Column(name = "phone_Number")
-    private String phoneNumber; // номер телефона клиента
+    private String phoneNumber;
     @Column(name = "email_Address")
-    private String emailAddress; // адрес электронной почты клиента
+    private String emailAddress;
     @Column(name = "ClientInn")
     private String clientInn;
 
