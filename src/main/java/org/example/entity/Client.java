@@ -17,21 +17,21 @@ import java.util.List;
 public class Client {
     @Id
     @GeneratedValue
-    @Column(name = "client_Id")
+    @Column(name = "client_id")
     private Integer clientId;
-    @Column(name = "client_First_Name")
+    @Column(name = "client_first_name")
     private String clientFirstName;
-    @Column(name = "client_Surname")
+    @Column(name = "client_surname")
     private String clientSurname;
-    @Column(name = "client_Patronymic_Name")
+    @Column(name = "client_patronymic_name")
     private String clientPatronymicName;
-    @Column(name = "customer_Category")
+    @Column(name = "customer_category")
     private String customerCategory;
-    @Column(name = "phone_Number")
+    @Column(name = "phone_number")
     private String phoneNumber;
-    @Column(name = "email_Address")
+    @Column(name = "email_address")
     private String emailAddress;
-    @Column(name = "ClientInn")
+    @Column(name = "client_inn")
     private String clientInn;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
