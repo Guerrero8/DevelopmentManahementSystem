@@ -101,8 +101,20 @@ public class ClientFsnService {
     public ClientFns setupClientFns(ClientFnsDTO clientFnsDTO){
         ClientFns clientFns = new ClientFns();
         clientFns.setInn(clientFnsDTO.getItems().get(0).getEntrepreneur().getInn());
-        clientFns.setFullName(clientFnsDTO.getItems().get(0).getEntrepreneur().getFullName());
+        clientFns.setCitizenship(clientFnsDTO.getItems().get(0).getEntrepreneur().getCitizenship());
+
         clientFns.setOgrnip(clientFnsDTO.getItems().get(0).getEntrepreneur().getOgrnip());
+        clientFns.setOgrnDate(clientFnsDTO.getItems().get(0).getEntrepreneur().getOgrnDate());
+
+        clientFns.setType(clientFnsDTO.getItems().get(0).getEntrepreneur().getType());
+        clientFns.setRegistration(clientFnsDTO.getItems().get(0).getEntrepreneur().getTaxAuthority().getRegistration());
+        clientFns.setRegDate(clientFnsDTO.getItems().get(0).getEntrepreneur().getTaxAuthority().getRegDate());
+        clientFns.setAccounting(clientFnsDTO.getItems().get(0).getEntrepreneur().getTaxAuthority().getAccounting());
+
+        clientFns.setOkfs(clientFnsDTO.getItems().get(0).getEntrepreneur().getStatusCodes().getOkfs());
+        clientFns.setOktmo(clientFnsDTO.getItems().get(0).getEntrepreneur().getStatusCodes().getOktmo());
+        clientFns.setOkpo(clientFnsDTO.getItems().get(0).getEntrepreneur().getStatusCodes().getOkpo());
+        clientFns.setOkogu(clientFnsDTO.getItems().get(0).getEntrepreneur().getStatusCodes().getOkogu());
         return clientFns;
     }
 }

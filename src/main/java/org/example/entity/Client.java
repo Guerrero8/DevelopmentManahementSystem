@@ -38,6 +38,6 @@ public class Client {
     private List<Order> orders = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "client_fns_data_id", referencedColumnName = "client_fns_data_id")
+    @JoinColumn(name = "id", referencedColumnName = "id")
     private ClientFns clientFns;
 }
