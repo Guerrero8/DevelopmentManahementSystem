@@ -23,7 +23,7 @@ public class ClientServise {
     public Client setupClient(SetupClientDTO setupClientDTO) {
         Client client = clientMapper.toClientFromSetupClientDTO(setupClientDTO);
         ClientFns clientFns = clientFsnService.getClientFnsData(setupClientDTO.getClientInn());
-       // clientFns.setUser(client);
+        clientFns.setClient(client);
         clientRepository.save(client);
         return client;
     }
