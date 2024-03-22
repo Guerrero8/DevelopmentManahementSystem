@@ -28,7 +28,7 @@ public class OrderServise {
     public Order setupOrder(SetupOrderDTO setupOrderDTO) {
         Optional<Client> client = clientRepository.findById(setupOrderDTO.getClientId());
         Order order = orderMapper.toOrderFromSetupOrderDTO(setupOrderDTO);
-        order.setClient(client.get());
+//        order.setClient(client.get());
         orderRepository.save(order);
         return order;
     }
