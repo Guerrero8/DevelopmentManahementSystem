@@ -33,6 +33,6 @@ public class Order {
     private float orderAmount;
 
     @ManyToOne
-    @JoinColumn(name = "client_id")
+    @JoinColumn(name = "client_id", nullable = false)
     private Client client;
 }

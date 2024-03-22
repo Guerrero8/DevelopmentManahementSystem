@@ -3,6 +3,7 @@ package org.example.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -33,8 +34,10 @@ public class Client {
     @Column(name = "ClientInn")
     private String clientInn;
 
-    @OneToMany(mappedBy = "client")
-    private List<Order> orders;
-  /*  @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
-    private ClientFns clientFns;*/
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Order> orders = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "client_fns_data_id", referencedColumnName = "client_fns_data_id")
+    private ClientFns clientFns;
 }

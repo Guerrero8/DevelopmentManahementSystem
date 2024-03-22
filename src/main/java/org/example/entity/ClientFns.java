@@ -21,8 +21,7 @@ public class ClientFns {
     private String ogrnDate;
     private String regDate;
 
-    /*@OneToOne
-    @JoinColumn(name = "client_id")
-    private Client user;*/
+    @OneToOne(mappedBy = "clientFns", fetch = FetchType.LAZY)
+    private Client client;
 }
 
