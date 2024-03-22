@@ -17,19 +17,19 @@ import java.time.LocalDateTime;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_Id")
+    @Column(name = "order_id")
     private Integer orderId;
-    @Column(name = "order_Status")
+    @Column(name = "order_status")
     private String orderStatus;
     @Column(name = "address")
     private String address;
-    @Column(name = "date_Of_Contract_Conclusion")
+    @Column(name = "date_Of_contract_conclusion")
     private LocalDate dateOfContractConclusion;
-    @Column(name = "date_Time_Of_Installation")
+    @Column(name = "date_time_of_installation")
     private LocalDateTime dateTimeOfInstallation;
-    @Column(name = "Deadline_ForService_Provision")
+    @Column(name = "deadline_forService_provision")
     private LocalDate DeadlineForServiceProvision;
-    @Column(name = "order_Amount")
+    @Column(name = "order_amount")
     private float orderAmount;
 
     @ManyToOne
