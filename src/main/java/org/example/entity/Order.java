@@ -17,8 +17,8 @@ import java.time.LocalDateTime;
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id")
-    private Integer orderId;
+    @Column(name = "id")
+    private Integer Id;
     @Column(name = "order_status")
     private String orderStatus;
     @Column(name = "address")

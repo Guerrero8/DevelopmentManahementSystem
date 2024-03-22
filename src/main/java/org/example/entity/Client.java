@@ -17,8 +17,8 @@ import java.util.List;
 public class Client {
     @Id
     @GeneratedValue
-    @Column(name = "client_id")
-    private Integer clientId;
+    @Column(name = "id")
+    private Integer Id;
     @Column(name = "client_first_name")
     private String clientFirstName;
     @Column(name = "client_surname")

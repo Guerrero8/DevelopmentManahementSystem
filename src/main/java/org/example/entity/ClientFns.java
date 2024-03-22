@@ -13,9 +13,8 @@ import javax.persistence.*;
 public class ClientFns {
     @Id
     @GeneratedValue
-    @Column(name = "client_fns_data_id")
-    private Integer clientFbsDataId;
-    private String fullName;
+    @Column(name = "id")
+    private Integer Id;
     private String inn;
     private String ogrnip;
     private String ogrnDate;
