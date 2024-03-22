@@ -8,6 +8,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@Table(name = "clients")
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,11 +17,11 @@ public class Client {
     @Id
     @GeneratedValue
     @Column(name = "client_Id")
-    private Integer clientId; // id клиента
+    private Integer clientId;
     @Column(name = "client_First_Name")
-    private String clientFirstName; // имя
+    private String clientFirstName;
     @Column(name = "client_Surname")
-    private String clientSurname; // фамилия
+    private String clientSurname;
     @Column(name = "client_Patronymic_Name")
     private String clientPatronymicName; // отчество
     @Column(name = "customer_Category")
@@ -29,7 +30,11 @@ public class Client {
     private String phoneNumber; // номер телефона клиента
     @Column(name = "email_Address")
     private String emailAddress; // адрес электронной почты клиента
+    @Column(name = "ClientInn")
+    private String clientInn;
 
     @OneToMany(mappedBy = "client")
     private List<Order> orders;
+  /*  @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
+    private ClientFns clientFns;*/
 }

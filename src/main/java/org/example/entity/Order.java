@@ -18,21 +18,21 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_Id")
-    private Integer orderId; // id заказа
+    private Integer orderId;
     @Column(name = "order_Status")
-    private String orderStatus; // статус выполнения заказа
+    private String orderStatus;
     @Column(name = "address")
-    private String address; // адрес проведения работ
+    private String address;
     @Column(name = "date_Of_Contract_Conclusion")
-    private LocalDate dateOfContractConclusion; // дата заключения договора
+    private LocalDate dateOfContractConclusion;
     @Column(name = "date_Time_Of_Installation")
-    private LocalDateTime dateTimeOfInstallation; // назначенная дата выполнения заказа
+    private LocalDateTime dateTimeOfInstallation;
     @Column(name = "Deadline_ForService_Provision")
-    private LocalDate DeadlineForServiceProvision; // крайний срок выполнения заказа
+    private LocalDate DeadlineForServiceProvision;
     @Column(name = "order_Amount")
-    private float orderAmount; // цена работ
+    private float orderAmount;
 
     @ManyToOne
-    @JoinColumn(name = "client_Id")
+    @JoinColumn(name = "client_id")
     private Client client;
 }

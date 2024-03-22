@@ -10,4 +10,5 @@ public class SetupClientDTO {
     private String customerCategory;
     private String phoneNumber;
     private String emailAddress;
+    private String clientInn;
 }

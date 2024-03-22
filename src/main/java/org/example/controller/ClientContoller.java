@@ -3,8 +3,8 @@ package org.example.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.controller.dto.SetupClientDTO;
 import org.example.entity.Client;
-import org.example.service.SearchServise;
-import org.example.service.SetupServise;
+import org.example.service.OrderServise;
+import org.example.service.ClientServise;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,16 +14,15 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("api")
 public class ClientContoller {
-    private final SearchServise searchServise;
-    private final SetupServise setupServise;
+    private final ClientServise clientServise;
 
     @PostMapping("/setupClient")
     private void setupClient(@RequestBody SetupClientDTO setupClientDTO) {
-        setupServise.setupClient(setupClientDTO);
+        clientServise.setupClient(setupClientDTO);
     }
 
     @PostMapping("/getClientBySurname")
     public List<Client> getClientBySurname(@RequestBody String desiredClient) {
-        return searchServise.getClientsFromRepositoryBySurname(desiredClient);
+        return clientServise.getClientsFromRepositoryBySurname(desiredClient);
     }
 }

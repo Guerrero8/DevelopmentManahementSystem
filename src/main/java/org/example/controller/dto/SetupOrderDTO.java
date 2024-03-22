@@ -17,6 +17,4 @@ public class SetupOrderDTO {
     private float OrderAmount;
 
     private Integer clientId;
-
-
 }
