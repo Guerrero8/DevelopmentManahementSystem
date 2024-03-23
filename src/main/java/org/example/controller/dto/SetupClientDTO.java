@@ -11,6 +11,5 @@ public class SetupClientDTO {
     private String customerCategory;
     private String phoneNumber;
     private String emailAddress;
-    @NotNull
     private String clientInn;
 }

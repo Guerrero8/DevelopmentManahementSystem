@@ -7,7 +7,10 @@ import org.example.api.FnsClient;
 import org.example.controller.dto.ClientFnsDTO;
 import org.example.entity.ClientFns;
 import org.example.repository.ClientFnsRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
+
+import javax.persistence.criteria.CriteriaBuilder;
 
 @Service
 @AllArgsConstructor
@@ -29,11 +32,10 @@ public class ClientFsnService {
         }
     }
 
-    public ClientFns setupClientFns(ClientFnsDTO clientFnsDTO){
+    public ClientFns setupClientFns(@NotNull ClientFnsDTO clientFnsDTO){
         ClientFns clientFns = new ClientFns();
         clientFns.setInn(clientFnsDTO.getItems().get(0).getEntrepreneur().getInn());
         clientFns.setCitizenship(clientFnsDTO.getItems().get(0).getEntrepreneur().getCitizenship());
-
         clientFns.setOgrnip(clientFnsDTO.getItems().get(0).getEntrepreneur().getOgrnip());
         clientFns.setOgrnDate(clientFnsDTO.getItems().get(0).getEntrepreneur().getOgrnDate());
 

@@ -3,8 +3,7 @@ package org.example.controller;
 import lombok.RequiredArgsConstructor;
 import org.example.controller.dto.SetupClientDTO;
 import org.example.entity.Client;
-import org.example.service.OrderServise;
-import org.example.service.ClientServise;
+import org.example.service.ClientService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,15 +13,19 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("api")
 public class ClientContoller {
-    private final ClientServise clientServise;
+    private final ClientService clientService;
 
     @PostMapping("/setupClient")
     private void setupClient(@RequestBody SetupClientDTO setupClientDTO) {
-        clientServise.setupClient(setupClientDTO);
+        clientService.createClient(setupClientDTO);
     }
 
     @PostMapping("/getClientBySurname")
     public List<Client> getClientBySurname(@RequestBody String desiredClient) {
-        return clientServise.getClientsFromRepositoryBySurname(desiredClient);
+        return clientService.getClientsFromRepositoryBySurname(desiredClient);
+    }
+    @PostMapping("/findClientFnsForClient")
+    public void findClientFnsForClient(@RequestParam Integer clientId){
+        clientService.findClientFnsByClientId(clientId);
     }
 }
