@@ -24,6 +24,10 @@ public class ClientContoller {
     public List<Client> getClientBySurname(@RequestParam String clientSurname) {
         return clientService.getClientsFromRepositoryBySurname(clientSurname);
     }
+    @PostMapping("/getClientById")
+    public Client getClientById(@RequestParam Integer id) {
+        return clientService.getClientFromRepositoryById(id);
+    }
     @PostMapping("/createClientFnsForClient")
     public void createClientFnsForClient(@RequestParam Integer clientId){
         clientService.CreateClientFnsByClientId(clientId);

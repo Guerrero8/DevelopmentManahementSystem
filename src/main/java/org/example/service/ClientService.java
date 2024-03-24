@@ -17,8 +17,22 @@ public class ClientService {
     private final ClientMapper clientMapper;
     private final ClientRepository clientRepository;
     private final ClientFsnService clientFsnService;
-
-
+    
+    public void createClient(CreateClientDTO createClientDTO) {
+        Client client = clientMapper.toClientFromSetupClientDTO(createClientDTO);
+        clientRepository.save(client);
+    }
+    public List<Client> getClientsFromRepositoryBySurname(String clientSurname){
+        return clientRepository.findByClientSurnameContaining(clientSurname);
+    }
+    public Client getClientFromRepositoryById(Integer id){
+        Optional<Client> client = clientRepository.findById(id);
+        if (client.isPresent()){
+           return  client.get();
+        } else {
+            throw new RuntimeException("Клиент не найден");
+        }
+    }
     public void CreateClientFnsByClientId(Integer clientId){
         Optional<Client> optionalClient = clientRepository.findById(clientId);
         if (optionalClient.isPresent()) {
@@ -33,14 +47,5 @@ public class ClientService {
         } else {
             throw  new RuntimeException("Клиент не найден.");
         }
-    }
-
-    public List<Client> getClientsFromRepositoryBySurname(String clientSurname){
-        return clientRepository.findByClientSurnameContaining(clientSurname);
-    }
-    public Client createClient(CreateClientDTO createClientDTO) {
-        Client client = clientMapper.toClientFromSetupClientDTO(createClientDTO);
-        clientRepository.save(client);
-        return client;
     }
 }
