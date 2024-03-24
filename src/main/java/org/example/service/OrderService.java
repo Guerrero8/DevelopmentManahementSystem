@@ -2,13 +2,14 @@ package org.example.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
-import org.example.controller.dto.SetupOrderDTO;
+import org.example.controller.dto.CreateOrderDTO;
 import org.example.mapper.OrderMapper;
 import org.example.repository.ClientRepository;
 import org.example.repository.OrderRepository;
 import org.example.entity.Client;
 import org.example.entity.Order;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -22,16 +23,29 @@ public class OrderService {
     private final ClientRepository clientRepository;
     private final OrderMapper orderMapper;
 
-    public List<Order> getOrdersFromRepositoryByAddress(String desiredOrder) {
-        return orderRepository.findOrderByAddressContaining(desiredOrder);
-    }
-    public Order setupOrder(SetupOrderDTO setupOrderDTO) {
-        Optional<Client> client = clientRepository.findById(setupOrderDTO.getClientId());
-        Order order = orderMapper.toOrderFromSetupOrderDTO(setupOrderDTO);
+
+    public Order createOrder(CreateOrderDTO createOrderDTO) {
+        Optional<Client> client = clientRepository.findById(createOrderDTO.getClientId());
+        Order order = orderMapper.toOrderFromSetupOrderDTO(createOrderDTO);
         order.setClient(client.get());
         orderRepository.save(order);
         return order;
     }
+    public List<Order> getOrdersFromRepositoryByAddress(String orderAddress) {
+        return orderRepository.findOrderByAddressContaining(orderAddress);
+    }
+    public Order getOrderById(Integer orderId) {
+        Optional<Order> optionalOrder = orderRepository.findById(orderId);
+        if (optionalOrder.isPresent()){
+            return optionalOrder.get();
+        } else {
+            throw new RuntimeException("Заказа не существует");
+        }
+    }
+    public void deleteOrderById(Integer orderId) {
+        orderRepository.deleteById(orderId);
+    }
+
     @SneakyThrows
     public String findOrderAddressOfMap(Integer orderId) {
         Optional<Order> orderOptional = orderRepository.findById(orderId);

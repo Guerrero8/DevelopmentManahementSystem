@@ -29,7 +29,7 @@ public class ClientService {
     public Client getClientFromRepositoryById(Integer id){
         Optional<Client> client = clientRepository.findById(id);
         if (client.isPresent()){
-           return  client.get();
+           return client.get();
         } else {
             throw new RuntimeException("Клиент не найден");
         }

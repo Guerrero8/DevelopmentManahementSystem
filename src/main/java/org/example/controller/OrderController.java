@@ -1,7 +1,7 @@
 package org.example.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.controller.dto.SetupOrderDTO;
+import org.example.controller.dto.CreateOrderDTO;
 import org.example.entity.Order;
 import org.example.service.OrderService;
 import org.springframework.web.bind.annotation.*;
@@ -15,13 +15,22 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping("/setupOrder")
-    private void setupOrder(@RequestBody SetupOrderDTO setupOrderDTO) {
-        orderService.setupOrder(setupOrderDTO);
+    private void createOrder(@RequestBody CreateOrderDTO createOrderDTO) {
+        orderService.createOrder(createOrderDTO);
     }
-    @PostMapping("/getOrderByAdderss")
-    public List<Order> getOrderByAddress(@RequestBody String desiredOrder){
-        return orderService.getOrdersFromRepositoryByAddress(desiredOrder);
+    @PostMapping("/getOrderByAdders")
+    public List<Order> getOrderByAddress(@RequestParam String orderAddress){
+        return orderService.getOrdersFromRepositoryByAddress(orderAddress);
     }
+    @PostMapping("/getOrderById")
+    public Order getOrderById(@RequestParam Integer orderId){
+        return  orderService.getOrderById(orderId);
+    }
+    @DeleteMapping("/deleteOrderById")
+    public void deleteOrderById(@RequestParam Integer orderId){
+        orderService.deleteOrderById(orderId);
+    }
+
     @PostMapping("/findOrderAddressOfMap")
     public String findOrderAddressOfMap(@RequestParam Integer orderId){
         return orderService.findOrderAddressOfMap(orderId);

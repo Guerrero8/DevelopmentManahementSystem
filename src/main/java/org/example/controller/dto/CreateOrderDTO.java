@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Data
 @RequiredArgsConstructor
-public class SetupOrderDTO {
+public class CreateOrderDTO {
     private String orderStatus;
     private String address;
     private LocalDate dateOfContractConclusion;
