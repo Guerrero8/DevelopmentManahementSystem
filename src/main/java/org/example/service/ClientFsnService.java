@@ -28,6 +28,10 @@ public class ClientFsnService {
         Client client = clients.get(0);
         return clientFnsRepository.findClientFnsByInn(client.getClientInn());
     }
+    public void deleteClientFnsByClient(Client client){
+        clientFnsRepository.deleteClientFnsByClient(client);
+    }
+
 
     @SneakyThrows
     public ClientFns getClientFnsData(String req) {

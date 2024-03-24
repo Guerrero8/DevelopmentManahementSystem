@@ -7,6 +7,7 @@ import org.example.mapper.ClientMapper;
 import org.example.repository.ClientRepository;
 import org.example.entity.Client;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,6 +33,11 @@ public class ClientService {
         } else {
             throw new RuntimeException("Клиент не найден");
         }
+    }
+    public void deleteClientAndHisFnsByClientId(@RequestParam Integer id) {
+        Client client = getClientFromRepositoryById(id);
+        clientFsnService.deleteClientFnsByClient(client);
+        clientRepository.delete(client);
     }
     public void CreateClientFnsByClientId(Integer clientId){
         Optional<Client> optionalClient = clientRepository.findById(clientId);

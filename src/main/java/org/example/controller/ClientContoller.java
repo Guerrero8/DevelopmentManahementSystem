@@ -28,9 +28,12 @@ public class ClientContoller {
     public Client getClientById(@RequestParam Integer id) {
         return clientService.getClientFromRepositoryById(id);
     }
+    @DeleteMapping("/deleteClientById")
+    public void deleteClientAndHisFnsByClientId(@RequestParam Integer id) {
+        clientService.deleteClientAndHisFnsByClientId(id);
+    }
     @PostMapping("/createClientFnsForClient")
     public void createClientFnsForClient(@RequestParam Integer clientId){
         clientService.CreateClientFnsByClientId(clientId);
     }
-
 }
