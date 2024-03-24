@@ -1,10 +1,9 @@
 package org.example.controller.dto;
 
 import lombok.Data;
-import javax.validation.constraints.NotNull;
 
 @Data
-public class SetupClientDTO {
+public class CreateClientDTO {
     private String clientFirstName;
     private String clientSurname;
     private String clientPatronymicName;

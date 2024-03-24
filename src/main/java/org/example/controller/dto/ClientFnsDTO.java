@@ -49,7 +49,16 @@ public class ClientFnsDTO {
         @JsonProperty("ОснВидДеят")
         private MainActivity mainActivity;
         @JsonProperty("ДопВидДеят")
-        private String[] additionalActivities;
+        private List<AdditionalActivity> additionalActivities;
+        @Data
+        public static class AdditionalActivity {
+            @JsonProperty("Код")
+            private String code;
+            @JsonProperty("Текст")
+            private String text;
+            @JsonProperty("Дата")
+            private String date;
+        }
         @JsonProperty("СПВЗ")
         private RegistrationAction[] registrationActions;
         @JsonProperty("История")

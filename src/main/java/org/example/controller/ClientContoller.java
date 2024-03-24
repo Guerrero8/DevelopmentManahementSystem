@@ -1,7 +1,7 @@
 package org.example.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.example.controller.dto.SetupClientDTO;
+import org.example.controller.dto.CreateClientDTO;
 import org.example.entity.Client;
 import org.example.service.ClientService;
 import org.springframework.web.bind.annotation.*;
@@ -15,17 +15,18 @@ import java.util.List;
 public class ClientContoller {
     private final ClientService clientService;
 
-    @PostMapping("/setupClient")
-    private void setupClient(@RequestBody SetupClientDTO setupClientDTO) {
-        clientService.createClient(setupClientDTO);
+    @PostMapping("/createClient")
+    private void createClient(@RequestBody CreateClientDTO createClientDTO) {
+        clientService.createClient(createClientDTO);
     }
 
     @PostMapping("/getClientBySurname")
-    public List<Client> getClientBySurname(@RequestBody String desiredClient) {
-        return clientService.getClientsFromRepositoryBySurname(desiredClient);
+    public List<Client> getClientBySurname(@RequestParam String clientSurname) {
+        return clientService.getClientsFromRepositoryBySurname(clientSurname);
     }
-    @PostMapping("/findClientFnsForClient")
-    public void findClientFnsForClient(@RequestParam Integer clientId){
-        clientService.findClientFnsByClientId(clientId);
+    @PostMapping("/createClientFnsForClient")
+    public void createClientFnsForClient(@RequestParam Integer clientId){
+        clientService.CreateClientFnsByClientId(clientId);
     }
+
 }
