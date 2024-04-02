@@ -3,6 +3,7 @@ package org.example.service;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.example.controller.dto.CreateOrderDTO;
+import org.example.controller.dto.UpdateOrderDTO;
 import org.example.mapper.OrderMapper;
 import org.example.repository.ClientRepository;
 import org.example.repository.OrderRepository;
@@ -54,6 +55,21 @@ public class OrderService {
             return "https://yandex.ru/maps/?text=" + URLEncoder.encode(order.getAddress(), StandardCharsets.UTF_8);
         } else {
             throw new RuntimeException("Адрес не найден");
+        }
+    }
+    public Order updateOrder(UpdateOrderDTO updateOrderDTO){
+        Optional<Order> optionalOrder = orderRepository.findById(updateOrderDTO.getOrderId());
+        if (optionalOrder.isPresent()){
+            Order order = optionalOrder.get();
+            order.setOrderStatus(updateOrderDTO.getOrderStatus());
+            order.setAddress(updateOrderDTO.getAddress());
+            order.setDateOfContractConclusion(updateOrderDTO.getDateOfContractConclusion());
+            order.setDateTimeOfInstallation(updateOrderDTO.getDateTimeOfInstallation());
+            order.setDeadlineForServiceProvision(updateOrderDTO.getDeadlineForServiceProvision());
+            order.setOrderAmount(updateOrderDTO.getOrderAmount());
+            return order;
+        } else {
+            throw new RuntimeException("Заказ не найден");
         }
     }
 }

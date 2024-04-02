@@ -1,6 +1,7 @@
 package org.example.service;
 
 import lombok.RequiredArgsConstructor;
+import org.example.controller.dto.UpdateClientDTO;
 import org.example.entity.ClientFns;
 import org.example.controller.dto.CreateClientDTO;
 import org.example.mapper.ClientMapper;
@@ -52,6 +53,22 @@ public class ClientService {
             }
         } else {
             throw  new RuntimeException("Клиент не найден.");
+        }
+    }
+    public Client updateClientById(UpdateClientDTO updateClientDTO){
+        Optional<Client> optionalClient = clientRepository.findById(updateClientDTO.getClientId());
+        if (optionalClient.isPresent()){
+            Client client = optionalClient.get();
+            client.setClientFirstName(updateClientDTO.getClientFirstName());
+            client.setClientSurname(updateClientDTO.getClientSurname());
+            client.setClientPatronymicName(updateClientDTO.getClientPatronymicName());
+            client.setCustomerCategory(updateClientDTO.getCustomerCategory());
+            client.setPhoneNumber(updateClientDTO.getPhoneNumber());
+            client.setEmailAddress(updateClientDTO.getEmailAddress());
+            client.setClientInn(updateClientDTO.getClientInn());
+            return client;
+        } else {
+            throw new RuntimeException("Клиента с таким ID не существует.");
         }
     }
 }

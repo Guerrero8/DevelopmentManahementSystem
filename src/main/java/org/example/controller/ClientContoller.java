@@ -2,6 +2,7 @@ package org.example.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.controller.dto.CreateClientDTO;
+import org.example.controller.dto.UpdateClientDTO;
 import org.example.entity.Client;
 import org.example.service.ClientService;
 import org.springframework.web.bind.annotation.*;
@@ -35,5 +36,9 @@ public class ClientContoller {
     @PostMapping("/createClientFnsForClient")
     public void createClientFnsForClient(@RequestParam Integer clientId){
         clientService.CreateClientFnsByClientId(clientId);
+    }
+    @PostMapping("/")
+    public void updateClientById(@RequestBody UpdateClientDTO updateClientDTO){
+        clientService.updateClientById(updateClientDTO);
     }
 }

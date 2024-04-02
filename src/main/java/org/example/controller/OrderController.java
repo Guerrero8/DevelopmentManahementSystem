@@ -30,9 +30,12 @@ public class OrderController {
     public void deleteOrderById(@RequestParam Integer orderId){
         orderService.deleteOrderById(orderId);
     }
-
     @PostMapping("/findOrderAddressOfMap")
     public String findOrderAddressOfMap(@RequestParam Integer orderId){
         return orderService.findOrderAddressOfMap(orderId);
+    }
+    @PostMapping("/updateOrder")
+    public void updateOrder(){
+
     }
 }
