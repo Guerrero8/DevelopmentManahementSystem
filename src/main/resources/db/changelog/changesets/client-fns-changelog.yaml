@@ -1,0 +1,61 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: guerrero
+      changes:
+        - createTable:
+            tableName: client_fns
+            columns:
+              - column:
+                  name: id
+                  type: INTEGER
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: inn
+                  type: VARCHAR(255)
+              - column:
+                  name: citizenship
+                  type: VARCHAR(255)
+              - column:
+                  name: ogrnip
+                  type: VARCHAR(255)
+              - column:
+                  name: ogrn_date
+                  type: VARCHAR(255)
+              - column:
+                  name: type
+                  type: VARCHAR(255)
+              - column:
+                  name: reg
+                  type: VARCHAR(255)
+              - column:
+                  name: reg_date
+                  type: VARCHAR(255)
+              - column:
+                  name: accounting
+                  type: VARCHAR(255)
+              - column:
+                  name: okpo
+                  type: VARCHAR(255)
+              - column:
+                  name: oktmo
+                  type: VARCHAR(255)
+              - column:
+                  name: okfs
+                  type: VARCHAR(255)
+              - column:
+                  name: okogu
+                  type: VARCHAR(255)
+  - changeSet:
+      id: 2
+      author: guerrero
+      changes:
+          - addForeignKeyConstraint:
+              baseColumnNames: id
+              baseTableName: clients
+              constraintName: fk_client_id_client_fns
+              referencedColumnNames: id
+              referencedTableName: client_fns
+

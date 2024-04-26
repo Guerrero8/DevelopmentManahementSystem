@@ -3,3 +3,5 @@ databaseChangeLog:
       file: db/changelog/changesets/client-changelog.yaml
   - include:
       file: db/changelog/changesets/order-changelog.yaml
+  - include:
+      file: db/changelog/changesets/client-fns-changelog.yaml
