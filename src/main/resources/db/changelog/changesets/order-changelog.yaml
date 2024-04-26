@@ -1,0 +1,45 @@
+databaseChangeLog:
+    - changeSet:
+        id: 2
+        author: guerrero
+        changes:
+        - createTable:
+            tableName: orders
+            columns:
+              - column:
+                  name: id
+                  type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: order_status
+                  type: VARCHAR(255)
+              - column:
+                  name: address
+                  type: VARCHAR(255)
+              - column:
+                  name: date_Of_contract_conclusion
+                  type: DATE
+              - column:
+                  name: date_time_of_installation
+                  type: TIMESTAMP
+              - column:
+                  name: deadline_forService_provision
+                  type: DATE
+              - column:
+                  name: order_amount
+                  type: DECIMAL
+              - column:
+                  name: client_id
+                  type: INT
+    - changeSet:
+        id: 3
+        author: guerrero
+        changes:
+          - addForeignKeyConstraint:
+              baseColumnNames: client_id
+              baseTableName: orders
+              constraintName: fk_client_id
+              referencedColumnNames: id
+              referencedTableName: clients
