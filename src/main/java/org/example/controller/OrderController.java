@@ -14,7 +14,7 @@ import java.util.List;
 public class OrderController {
     private final OrderService orderService;
 
-    @PostMapping("/setupOrder")
+    @PostMapping("/createOrder")
     private void createOrder(@RequestBody CreateOrderDTO createOrderDTO) {
         orderService.createOrder(createOrderDTO);
     }

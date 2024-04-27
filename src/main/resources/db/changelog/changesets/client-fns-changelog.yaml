@@ -48,14 +48,4 @@ databaseChangeLog:
               - column:
                   name: okogu
                   type: VARCHAR(255)
-  - changeSet:
-      id: 2
-      author: guerrero
-      changes:
-          - addForeignKeyConstraint:
-              baseColumnNames: id
-              baseTableName: clients
-              constraintName: fk_client_id_client_fns
-              referencedColumnNames: id
-              referencedTableName: client_fns
 

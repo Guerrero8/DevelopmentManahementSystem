@@ -16,7 +16,7 @@ import java.util.List;
 
 public class Client {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer Id;
     @Column(name = "client_first_name")
@@ -38,6 +38,5 @@ public class Client {
     private List<Order> orders = new ArrayList<>();
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "id")
     private ClientFns clientFns;
 }

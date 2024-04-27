@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class ClientFns {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer Id;
     @Column(name = "inn")
@@ -44,7 +44,8 @@ public class ClientFns {
     private String okogu;
 
 
-    @OneToOne(mappedBy = "clientFns", fetch = FetchType.LAZY)
+    @OneToOne
+    @JoinColumn(columnDefinition = "client_id", referencedColumnName = "id")
     private Client client;
 }
 
