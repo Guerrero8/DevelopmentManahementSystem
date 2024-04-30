@@ -27,10 +27,14 @@ public class OrderService {
 
     public Order createOrder(CreateOrderDTO createOrderDTO) {
         Optional<Client> client = clientRepository.findById(createOrderDTO.getClientId());
-        Order order = orderMapper.toOrderFromSetupOrderDTO(createOrderDTO);
-        order.setClient(client.get());
-        orderRepository.save(order);
-        return order;
+        if (client.isPresent()) {
+            Order order = orderMapper.toOrderFromSetupOrderDTO(createOrderDTO);
+            order.setClient(client.get());
+            orderRepository.save(order);
+            return order;
+        } else {
+            throw new IllegalArgumentException("Client with id " + createOrderDTO.getClientId() + " not found");
+        }
     }
     public List<Order> getOrdersFromRepositoryByAddress(String orderAddress) {
         return orderRepository.findOrderByAddressContaining(orderAddress);

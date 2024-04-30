@@ -1,8 +1,8 @@
 databaseChangeLog:
-    - changeSet:
-        id: 1
-        author: guerrero
-        changes:
+  - changeSet:
+      id: 1
+      author: guerrero
+      changes:
         - createTable:
             tableName: orders
             columns:
@@ -19,13 +19,13 @@ databaseChangeLog:
                   name: address
                   type: VARCHAR(255)
               - column:
-                  name: date_Of_contract_conclusion
+                  name: date_of_contract_conclusion
                   type: DATE
               - column:
                   name: date_time_of_installation
                   type: TIMESTAMP
               - column:
-                  name: deadline_forService_provision
+                  name: deadline_for_service_provision
                   type: DATE
               - column:
                   name: order_amount
@@ -33,13 +33,13 @@ databaseChangeLog:
               - column:
                   name: client_id
                   type: INT
-    - changeSet:
-        id: 2
-        author: guerrero
-        changes:
-          - addForeignKeyConstraint:
-              baseColumnNames: client_id
-              baseTableName: orders
-              constraintName: fk_client_id
-              referencedColumnNames: id
-              referencedTableName: clients
+  - changeSet:
+      id: 2
+      author: guerrero
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: orders
+            baseColumnNames: client_id
+            referencedTableName: clients
+            referencedColumnNames: id
+            constraintName: fk_client_id

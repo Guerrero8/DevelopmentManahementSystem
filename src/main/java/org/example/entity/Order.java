@@ -23,11 +23,11 @@ public class Order {
     private String orderStatus;
     @Column(name = "address")
     private String address;
-    @Column(name = "date_Of_contract_conclusion")
+    @Column(name = "date_of_contract_conclusion")
     private LocalDate dateOfContractConclusion;
     @Column(name = "date_time_of_installation")
     private LocalDateTime dateTimeOfInstallation;
-    @Column(name = "deadline_forService_provision")
+    @Column(name = "deadline_for_service_provision")
     private LocalDate DeadlineForServiceProvision;
     @Column(name = "order_amount")
     private float orderAmount;
