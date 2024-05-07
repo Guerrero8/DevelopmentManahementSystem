@@ -36,11 +36,4 @@ public class Client {
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders = new ArrayList<>();
-
-/*
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "client_fns_id")
-    private ClientFns clientFns;
-*/
-
 }

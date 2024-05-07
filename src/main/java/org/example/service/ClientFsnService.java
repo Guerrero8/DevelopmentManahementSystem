@@ -12,36 +12,24 @@ import org.example.repository.ClientRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.List;
-
 @Service
 @AllArgsConstructor
 public class ClientFsnService {
     private final ObjectMapper objectMapper;
     private final ClientFnsRepository clientFnsRepository;
     private final FnsClient fnsClient;
-    private final ClientRepository clientRepository;
 
-    public ClientFns getClientFnsByClientSurname(String clientSurname){
-        List<Client> clients = clientRepository.findByClientSurnameContaining(clientSurname);
-        Client client = clients.get(0);
-        return clientFnsRepository.findClientFnsByInn(client.getClientInn());
-    }
     public void deleteClientFnsByClient(Client client){
         clientFnsRepository.deleteClientFnsByClient(client);
     }
-
-
     @SneakyThrows
     public ClientFns getClientFnsData(String req) {
         ClientFns clientFns;
         if (clientFnsRepository.findClientFnsByInn(req) == null) {
             String fnsData = fnsClient.getClientFnsData(req, "a7b7cf9f349a9ebca9d3a4cec8183bb11a664ff4");
-            if (fnsData.isEmpty()) {
+            if (!fnsData.isEmpty()) {
                 ClientFnsDTO clientFnsDTO = objectMapper.readValue(fnsData, ClientFnsDTO.class);
                 clientFns = setupClientFns(clientFnsDTO);
-                clientFnsRepository.save(clientFns);
             } else {
                 throw new RuntimeException("Сайт фнс не нашел информации по данному Инн");
             }

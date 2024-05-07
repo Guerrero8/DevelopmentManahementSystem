@@ -35,7 +35,7 @@ public class ClientContoller {
     }
     @PostMapping("/createClientFnsForClient")
     public void createClientFnsForClient(@RequestParam Integer clientId){
-        clientService.CreateClientFnsByClientId(clientId);
+        clientService.createClientFnsByClientId(clientId);
     }
     @PostMapping("/")
     public void updateClientById(@RequestBody UpdateClientDTO updateClientDTO){

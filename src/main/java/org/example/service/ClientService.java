@@ -5,6 +5,7 @@ import org.example.controller.dto.UpdateClientDTO;
 import org.example.entity.ClientFns;
 import org.example.controller.dto.CreateClientDTO;
 import org.example.mapper.ClientMapper;
+import org.example.repository.ClientFnsRepository;
 import org.example.repository.ClientRepository;
 import org.example.entity.Client;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,7 @@ public class ClientService {
     private final ClientMapper clientMapper;
     private final ClientRepository clientRepository;
     private final ClientFsnService clientFsnService;
+    private final ClientFnsRepository clientFnsRepository;
     
     public void createClient(CreateClientDTO createClientDTO) {
         Client client = clientMapper.toClientFromSetupClientDTO(createClientDTO);
@@ -40,7 +42,7 @@ public class ClientService {
         clientFsnService.deleteClientFnsByClient(client);
         clientRepository.delete(client);
     }
-    public void CreateClientFnsByClientId(Integer clientId){
+    public void createClientFnsByClientId(Integer clientId){
         Optional<Client> optionalClient = clientRepository.findById(clientId);
         if (optionalClient.isPresent()) {
             Client client = optionalClient.get();
@@ -48,6 +50,7 @@ public class ClientService {
             if (!clientInn.isEmpty()) {
                 ClientFns clientFns = clientFsnService.getClientFnsData(clientInn);
                 clientFns.setClient(client);
+                clientFnsRepository.save(clientFns);
             } else {
                 throw  new RuntimeException("Клиент не имеет ИНН.");
             }

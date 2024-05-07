@@ -10,11 +10,5 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RequestMapping("api")
 public class ClientFnsController {
-    private final ClientFsnService clientFsnService;
-    @PostMapping("/getClientFnsByClientSurname")
-    public ClientFns getClientFnsByClientSurname(@RequestParam String clientSurname){
-        return clientFsnService.getClientFnsByClientSurname(clientSurname);
-    }
-
 
 }
