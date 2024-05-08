@@ -1,6 +1,7 @@
 package org.example.service;
 
 import lombok.RequiredArgsConstructor;
+import org.example.controller.dto.GetAllClientDTO;
 import org.example.controller.dto.UpdateClientDTO;
 import org.example.entity.ClientFns;
 import org.example.controller.dto.CreateClientDTO;
@@ -8,20 +9,41 @@ import org.example.mapper.ClientMapper;
 import org.example.repository.ClientFnsRepository;
 import org.example.repository.ClientRepository;
 import org.example.entity.Client;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Primary
 public class ClientService {
     private final ClientMapper clientMapper;
     private final ClientRepository clientRepository;
     private final ClientFsnService clientFsnService;
     private final ClientFnsRepository clientFnsRepository;
-    
+
+
+    public List<GetAllClientDTO> findAllClients() {
+        List<Client> clients = clientRepository.findAll();
+        List<GetAllClientDTO> getAllClientDTOS = new ArrayList<>();
+        for (Client client : clients) {
+            GetAllClientDTO getAllClientDTO = new GetAllClientDTO();
+            getAllClientDTO.setId(client.getId());
+            getAllClientDTO.setClientFirstName(client.getClientFirstName());
+            getAllClientDTO.setClientSurname(client.getClientSurname());
+            getAllClientDTO.setClientPatronymicName(client.getClientPatronymicName());
+            getAllClientDTO.setCustomerCategory(client.getCustomerCategory());
+            getAllClientDTO.setPhoneNumber(client.getPhoneNumber());
+            getAllClientDTO.setEmailAddress(client.getEmailAddress());
+            getAllClientDTO.setClientInn(client.getClientInn());
+            getAllClientDTOS.add(getAllClientDTO);
+        }
+        return getAllClientDTOS;
+    }
     public void createClient(CreateClientDTO createClientDTO) {
         Client client = clientMapper.toClientFromSetupClientDTO(createClientDTO);
         clientRepository.save(client);

@@ -3,17 +3,20 @@ package org.example.service;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.example.controller.dto.CreateOrderDTO;
+import org.example.controller.dto.GetAllOrdersDTO;
 import org.example.controller.dto.UpdateOrderDTO;
 import org.example.mapper.OrderMapper;
 import org.example.repository.ClientRepository;
 import org.example.repository.OrderRepository;
 import org.example.entity.Client;
 import org.example.entity.Order;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,6 +27,22 @@ public class OrderService {
     private final ClientRepository clientRepository;
     private final OrderMapper orderMapper;
 
+    public List<GetAllOrdersDTO> getAllOrders() {
+        List<Order> orders = orderRepository.findAll();
+        List<GetAllOrdersDTO> getAllOrdersDTOS = new ArrayList<>();
+        for (Order order : orders) {
+            GetAllOrdersDTO getAllOrdersDTO = new GetAllOrdersDTO();
+            getAllOrdersDTO.setId(order.getId());
+            getAllOrdersDTO.setOrderStatus(order.getOrderStatus());
+            getAllOrdersDTO.setAddress(order.getAddress());
+            getAllOrdersDTO.setDateOfContractConclusion(order.getDateOfContractConclusion());
+            getAllOrdersDTO.setDateTimeOfInstallation(order.getDateTimeOfInstallation());
+            getAllOrdersDTO.setDeadlineForServiceProvision(order.getDeadlineForServiceProvision());
+            getAllOrdersDTO.setOrderAmount(order.getOrderAmount());
+            getAllOrdersDTOS.add(getAllOrdersDTO);
+        }
+        return getAllOrdersDTOS;
+    }
 
     public Order createOrder(CreateOrderDTO createOrderDTO) {
         Optional<Client> client = clientRepository.findById(createOrderDTO.getClientId());

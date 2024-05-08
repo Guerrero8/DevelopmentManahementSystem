@@ -5,6 +5,8 @@ import org.example.entity.ClientFns;
 import org.example.service.ClientFsnService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequiredArgsConstructor

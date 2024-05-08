@@ -3,6 +3,7 @@ package org.example.controller;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.controller.dto.CreateOrderDTO;
+import org.example.controller.dto.GetAllOrdersDTO;
 import org.example.entity.Order;
 import org.example.service.OrderService;
 import org.springframework.web.bind.annotation.*;
@@ -16,8 +17,14 @@ import java.util.List;
 public class OrderController {
     private final OrderService orderService;
 
+    @GetMapping("/getAllOrders")
+    public List<GetAllOrdersDTO> createOrder() {
+        log.info("request to getAllOrders: {}", orderService.getAllOrders());
+        return orderService.getAllOrders();
+    }
+
     @PostMapping("/createOrder")
-    private void createOrder(@RequestBody CreateOrderDTO createOrderDTO) {
+    public void createOrder(@RequestBody CreateOrderDTO createOrderDTO) {
         log.info("request to create order: {}", createOrderDTO);
         orderService.createOrder(createOrderDTO);
     }
@@ -39,6 +46,5 @@ public class OrderController {
     }
     @PostMapping("/updateOrder")
     public void updateOrder(){
-
     }
 }

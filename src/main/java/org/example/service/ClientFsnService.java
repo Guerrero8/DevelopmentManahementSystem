@@ -12,6 +12,8 @@ import org.example.repository.ClientRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class ClientFsnService {
