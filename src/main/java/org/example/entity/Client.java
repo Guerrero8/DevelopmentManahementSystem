@@ -35,5 +35,5 @@ public class Client {
     private String clientInn;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Order> orders = new ArrayList<>();
+    private List<Order> orders;
 }

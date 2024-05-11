@@ -8,11 +8,8 @@ import org.example.controller.dto.ClientFnsDTO;
 import org.example.entity.Client;
 import org.example.entity.ClientFns;
 import org.example.repository.ClientFnsRepository;
-import org.example.repository.ClientRepository;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -22,13 +19,16 @@ public class ClientFsnService {
     private final FnsClient fnsClient;
 
     public void deleteClientFnsByClient(Client client){
-        clientFnsRepository.deleteClientFnsByClient(client);
+        if(clientFnsRepository.existsById(client.getId())){
+            clientFnsRepository.deleteClientFnsByClient(client);
+        }
     }
+
     @SneakyThrows
-    public ClientFns getClientFnsData(String req) {
+    public ClientFns createClientFnsData(String clientId) {
         ClientFns clientFns;
-        if (clientFnsRepository.findClientFnsByInn(req) == null) {
-            String fnsData = fnsClient.getClientFnsData(req, "a7b7cf9f349a9ebca9d3a4cec8183bb11a664ff4");
+        if (clientFnsRepository.findClientFnsByInn(clientId) == null) {
+            String fnsData = fnsClient.getClientFnsData(clientId, "a7b7cf9f349a9ebca9d3a4cec8183bb11a664ff4");
             if (!fnsData.isEmpty()) {
                 ClientFnsDTO clientFnsDTO = objectMapper.readValue(fnsData, ClientFnsDTO.class);
                 clientFns = setupClientFns(clientFnsDTO);
