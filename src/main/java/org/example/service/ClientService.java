@@ -2,6 +2,7 @@ package org.example.service;
 
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.controller.dto.GetAllClientDTO;
 import org.example.controller.dto.GetAllClientInfoDTO;
 import org.example.controller.dto.UpdateClientDTO;
@@ -67,10 +68,8 @@ public class ClientService {
     }
 
     @Transactional
-    public void deleteClientAndHisFnsByClientId(@RequestParam Integer id) {
-        Client client = getClientFromRepositoryById(id);
-        clientFsnService.deleteClientFnsByClient(client);
-        clientRepository.delete(client);
+    public void deleteClientAndHisFnsByClientId(Integer id) {
+        clientRepository.delete(getClientFromRepositoryById(id));
     }
 
     public void createClientFnsByClientId(Integer clientId) {
@@ -125,20 +124,23 @@ public class ClientService {
             ));
 
 
-            ClientFns clientFns = clientFnsRepository.findClientFnsByClient(client);
-            getAllClientInfoDTO.setClientFnsList(List.of(GetAllClientInfoDTO.ClientFnsInfoDTO.builder()
-                    .inn(clientFns.getInn())
-                    .citizenship(clientFns.getCitizenship())
-                    .ogrnip(clientFns.getOgrnip())
-                    .ogrnDate(clientFns.getOgrnDate())
-                    .regDate(clientFns.getRegDate())
-                    .accounting(clientFns.getAccounting())
-                    .okpo(clientFns.getOkpo())
-                    .oktmo(clientFns.getOktmo())
-                    .okfs(clientFns.getOkfs())
-                    .okogu(clientFns.getOkogu())
-                    .build()
-            ));
+            Optional<ClientFns> optionalClientFns = clientFnsRepository.findClientFnsByClient(client);
+            if (optionalClientFns.isPresent()) {
+                ClientFns clientFns = optionalClientFns.get();
+                getAllClientInfoDTO.setClientFnsList(List.of(GetAllClientInfoDTO.ClientFnsInfoDTO.builder()
+                        .inn(clientFns.getInn())
+                        .citizenship(clientFns.getCitizenship())
+                        .ogrnip(clientFns.getOgrnip())
+                        .ogrnDate(clientFns.getOgrnDate())
+                        .regDate(clientFns.getRegDate())
+                        .accounting(clientFns.getAccounting())
+                        .okpo(clientFns.getOkpo())
+                        .oktmo(clientFns.getOktmo())
+                        .okfs(clientFns.getOkfs())
+                        .okogu(clientFns.getOkogu())
+                        .build()
+                ));
+            }
 
             List<Order> orders = orderRepository.findOrdersByClient(client);
             getAllClientInfoDTO.setOrders(orders.stream().map(order -> GetAllClientInfoDTO.OrderInfoDTO.builder()

@@ -1,7 +1,9 @@
 databaseChangeLog:
   - include:
-      file: db/changelog/changesets/client-changelog.yaml
+      file: db/changelog/changesets/1-client-changelog.yaml
   - include:
-      file: db/changelog/changesets/order-changelog.yaml
+      file: db/changelog/changesets/2-client-fns-changelog.yaml
   - include:
-      file: db/changelog/changesets/client-fns-changelog.yaml
+      file: db/changelog/changesets/3-order-changelog.yaml
+  - include:
+      file: db/changelog/changesets/4-client-changelog.yaml

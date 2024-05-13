@@ -33,6 +33,7 @@ public class ClientContoller {
     }
     @DeleteMapping("/deleteClientById")
     public void deleteClientAndHisFnsByClientId(@RequestParam Integer id) {
+        log.info("In deleteClientAndHisFnsByClientId method {}", id);
         clientService.deleteClientAndHisFnsByClientId(id);
     }
     @PostMapping("/createClientFnsForClient")

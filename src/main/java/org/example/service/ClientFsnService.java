@@ -18,11 +18,6 @@ public class ClientFsnService {
     private final ClientFnsRepository clientFnsRepository;
     private final FnsClient fnsClient;
 
-    public void deleteClientFnsByClient(Client client){
-        if(clientFnsRepository.existsById(client.getId())){
-            clientFnsRepository.deleteClientFnsByClient(client);
-        }
-    }
 
     @SneakyThrows
     public ClientFns createClientFnsData(String clientId) {

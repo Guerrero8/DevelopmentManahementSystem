@@ -1,0 +1,20 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4
+      author: guerrero
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: client_fns
+            constraintName: fk_client_fns_client
+
+  - changeSet:
+      id: 5
+      author: guerrero
+      changes:
+        - addForeignKeyConstraint:
+            baseTableName: client_fns
+            baseColumnNames: client_id
+            constraintName: fk_client_fns_client
+            referencedTableName: clients
+            referencedColumnNames: id
+            onDelete: CASCADE
