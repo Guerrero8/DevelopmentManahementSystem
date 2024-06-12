@@ -11,5 +11,4 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface FnsClient {
     @PostMapping("/egr")
     String getClientFnsData(@RequestParam("req") String req,@RequestParam("key") String  key);
-
 }

@@ -18,12 +18,11 @@ public class ClientFsnService {
     private final ClientFnsRepository clientFnsRepository;
     private final FnsClient fnsClient;
 
-
     @SneakyThrows
-    public ClientFns createClientFnsData(String clientId) {
+    public ClientFns createClientFnsData(String clientInn) {
         ClientFns clientFns;
-        if (clientFnsRepository.findClientFnsByInn(clientId) == null) {
-            String fnsData = fnsClient.getClientFnsData(clientId, "a7b7cf9f349a9ebca9d3a4cec8183bb11a664ff4");
+        if (clientFnsRepository.findClientFnsByInn(clientInn) == null) {
+            String fnsData = fnsClient.getClientFnsData(clientInn, "a7b7cf9f349a9ebca9d3a4cec8183bb11a664ff4");
             if (!fnsData.isEmpty()) {
                 ClientFnsDTO clientFnsDTO = objectMapper.readValue(fnsData, ClientFnsDTO.class);
                 clientFns = setupClientFns(clientFnsDTO);

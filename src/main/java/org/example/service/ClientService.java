@@ -34,6 +34,10 @@ public class ClientService {
     private final ClientFnsRepository clientFnsRepository;
     private final OrderRepository orderRepository;
 
+    public void createClient(CreateClientDTO createClientDTO) {
+        Client client = clientMapper.toClientFromSetupClientDTO(createClientDTO);
+        clientRepository.save(client);
+    }
 
     public List<GetAllClientDTO> findAllClients() {
         List<Client> clients = clientRepository.findAll();
@@ -51,11 +55,6 @@ public class ClientService {
             getAllClientDTOS.add(getAllClientDTO);
         }
         return getAllClientDTOS;
-    }
-
-    public void createClient(CreateClientDTO createClientDTO) {
-        Client client = clientMapper.toClientFromSetupClientDTO(createClientDTO);
-        clientRepository.save(client);
     }
 
     public Client getClientFromRepositoryById(Integer id) {
