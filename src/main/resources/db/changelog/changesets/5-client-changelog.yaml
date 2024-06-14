@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: guerrero
+      changes:
+        - dropColumn:
+            columnName: customer_category
+            tableName: clients

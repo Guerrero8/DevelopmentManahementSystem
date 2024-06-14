@@ -48,7 +48,6 @@ public class ClientService {
             getAllClientDTO.setClientFirstName(client.getClientFirstName());
             getAllClientDTO.setClientSurname(client.getClientSurname());
             getAllClientDTO.setClientPatronymicName(client.getClientPatronymicName());
-            getAllClientDTO.setCustomerCategory(client.getCustomerCategory());
             getAllClientDTO.setPhoneNumber(client.getPhoneNumber());
             getAllClientDTO.setEmailAddress(client.getEmailAddress());
             getAllClientDTO.setClientInn(client.getClientInn());
@@ -95,7 +94,6 @@ public class ClientService {
             client.setClientFirstName(updateClientDTO.getClientFirstName());
             client.setClientSurname(updateClientDTO.getClientSurname());
             client.setClientPatronymicName(updateClientDTO.getClientPatronymicName());
-            client.setCustomerCategory(updateClientDTO.getCustomerCategory());
             client.setPhoneNumber(updateClientDTO.getPhoneNumber());
             client.setEmailAddress(updateClientDTO.getEmailAddress());
             client.setClientInn(updateClientDTO.getClientInn());
@@ -115,7 +113,6 @@ public class ClientService {
                     .clientSurname(client.getClientSurname())
                     .clientFirstName(client.getClientFirstName())
                     .clientPatronymicName(client.getClientPatronymicName())
-                    .customerCategory(client.getCustomerCategory())
                     .phoneNumber(client.getPhoneNumber())
                     .emailAddress(client.getEmailAddress())
                     .clientInn(client.getClientInn())

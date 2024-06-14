@@ -25,8 +25,6 @@ public class Client {
     private String clientSurname;
     @Column(name = "client_patronymic_name")
     private String clientPatronymicName;
-    @Column(name = "customer_category")
-    private String customerCategory;
     @Column(name = "phone_number")
     private String phoneNumber;
     @Column(name = "email_address")

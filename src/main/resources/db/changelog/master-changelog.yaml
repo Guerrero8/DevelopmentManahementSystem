@@ -7,3 +7,5 @@ databaseChangeLog:
       file: db/changelog/changesets/3-order-changelog.yaml
   - include:
       file: db/changelog/changesets/4-client-changelog.yaml
+  - include:
+      file: db/changelog/changesets/5-client-changelog.yaml
